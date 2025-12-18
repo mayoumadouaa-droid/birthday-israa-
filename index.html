@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday </title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: rgb(23, 3, 3);
+    text-align: center;
+  }
+
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding: 50px 20px;
+    position: relative;
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease;
+  }
+
+  .btn {
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+  }
+
+  .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  }
+
+  /* Page-specific button styles */
+  .btn1 { background-color: #ff6f91; color: white; }
+  .btn2 { background-color: #845ec2; color: white; }
+  .btn3 { background-color: #ff9671; color: white; }
+  .btn4 { background-color: #00c9a7; color: white; }
+  .btn5 { background-color: #f9f871; color: #333; }
+  .btn6 { background-color: #ff7f50; color: white; }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Page backgrounds */
+  .page1 { background: radial-gradient(circle at top left, #ff9a9e, #fad0c4); }
+  .page2 { background: radial-gradient(circle at top right, #a18cd1, #fbc2eb); }
+  .page3 { background: radial-gradient(circle at bottom left, #f6d365, #fda085); }
+  .page4 { background: radial-gradient(circle at bottom right, #89f7fe, #66a6ff); }
+  .page5 { background: radial-gradient(circle at center, #ffecd2, #fcb69f); }
+  .page6 { background: radial-gradient(circle at center, #cfd9df, #e2ebf0); color: #333; }
+
+  /* Sparkles */
+  .sparkle {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.8;
+    animation: sparkleAnim 3s infinite;
+  }
+
+  @keyframes sparkleAnim {
+    0% { transform: translateY(0) scale(1); opacity:0.8;}
+    50% { transform: translateY(-20px) scale(1.2); opacity:1;}
+    100% { transform: translateY(0) scale(1); opacity:0.8;}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div class="page page1">
+  <h2>✨🤍🌙💫<br>Hey Israa… 👀</h2>
+  <h2>Pause for a second ✋<br>This page was made just for you 🤍</h2>
+  <button class="btn btn1" onclick="nextPage()">✨ Show me more ✨</button>
+</div>
+
+<!-- Page 2 -->
+<div class="page page2">
+  <h2>Omgggg 😩❤️✨<br>Happy Birthday!!! 🎉🎂</h2>
+  <h2>Not just another year…<br>but another reminder of how special you truly are ✨💖</h2>
+  <button class="btn btn2" onclick="nextPage()">💫 Keep shining 💫</button>
+</div>
+
+<!-- Page 3 -->
+<div class="page page3">
+  <h2>I'm sooo proud of you 😍<br>and sooo happy to see you finally my age, little one! 😂💫</h2>
+  <h2>Thank you for being there when it mattered the most,<br>for your kindness 🌸, your strength 💪, and your beautiful soul 🤍</h2>
+  <button class="btn btn3" onclick="nextPage()">🎁 Surprise me 🎁</button>
+</div>
+
+<!-- Page 4 -->
+<div class="page page4">
+  <h2>Some people are rare 🖤<br>and somehow… you’re one of them ✨</h2>
+  <h2>✨🎁<br>Just this 🤍 – this world is better with you in it 🌍💫</h2>
+  <button class="btn btn4" onclick="nextPage()">🌙 Let’s go 🌙</button>
+</div>
+
+<!-- Page 5 -->
+<div class="page page5">
+  <h2>Today is about YOU 💫<br>Your smile 😊, your light ✨</h2>
+  <h2>and everything you are 🤍<br>Wishing you success in everything you do 🌟💪</h2>
+  <button class="btn btn5" onclick="nextPage()">💖 More magic 💖</button>
+</div>
+
+<!-- Page 6 -->
+<div class="page page6">
+  <h2>Honestly, I wish everyone could find<br>a kind, loving, and special friend like you 💕</h2>
+  <h2>Happy Birthday again!!! 🥳🎈🎁<br>Always. ✨🤍🌙💫</h2>
+  <button class="btn btn6" onclick="restart()">✨ Back to start ✨</button>
+</div>
+
+<script>
+  let currentPage = 0;
+  const pages = document.querySelectorAll('.page');
+
+  function showPage(index) {
+    pages.forEach((page, i) => page.style.display = i === index ? 'block' : 'none');
+    createSparkles();
+  }
+
+  function nextPage() {
+    currentPage++;
+    if(currentPage >= pages.length) currentPage = pages.length -1;
+    showPage(currentPage);
+  }
+
+  function restart() {
+    currentPage = 0;
+    showPage(currentPage);
+  }
+
+  // Initial display
+  showPage(currentPage);
+
+  function createSparkles() {
+    document.querySelectorAll('.sparkle').forEach(s => s.remove());
+    const page = pages[currentPage];
+    for(let i=0; i<30; i++){
+      const s = document.createElement('div');
+      s.classList.add('sparkle');
+      s.style.width = s.style.height = `${Math.random()*6 + 4}px`;
+      s.style.top = `${Math.random()*100}%`;
+      s.style.left = `${Math.random()*100}%`;
+      s.style.animationDuration = `${Math.random()*3 + 2}s`;
+      page.appendChild(s);
+    }
+  }
+</script>
+
+</body>
+</html>
